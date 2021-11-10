@@ -1,0 +1,7 @@
+{
+  "server": "1cserver",
+  "database": "CSimple",
+  "tablename": "dbo.AccessRecords",
+  "username": "CSimpleUser",
+  "password": "TfF3790hK"
+}

@@ -1,0 +1,7 @@
+{
+  "personid": "personID",
+  "date": "authDate",
+  "time": "authTime",
+  "recordid": "recordID",
+  "deviceip": "deviceSerial"
+}

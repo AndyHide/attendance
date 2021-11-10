@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Sign In</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        {{ form.username(size=32, class="mdl-textfield__input", type="text", id="username-input") }}
+        <label class="mdl-textfield__label" for="username-input">{{ form.username.label }}</label>
+        {% for error in form.username.errors %}
+        <span class="mdl-textfield__error">[{{ error }}]</span>
+        {% endfor %}
+    </div><br>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        {{ form.password(size=32, class="mdl-textfield__input", type="password", id="password-input") }}
+        <label class="mdl-textfield__label" for="password-input">{{ form.password.label }}</label>
+        {% for error in form.password.errors %}
+        <span class="mdl-textfield__error">[{{ error }}]</span>
+        {% endfor %}
+    </div><br>
+
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+            name="action" style="margin-top: 20px; margin-bottom: 20px" type="submit">Войти
+    </button>
+</form>
+{% endblock %}

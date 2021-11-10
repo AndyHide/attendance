@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Отчёт за {{ day }}</h2>
+
+
+{% if att_list['absent'] %}
+<h3>Отсутствующие:</h3>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">Сотрудник</th>
+        <th class="mdl-data-table__cell--non-numeric">Отдел</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for person in att_list['absent'] %}
+    <tr>
+        <td class="mdl-data-table__cell--non-numeric">{{ person_list[person]['id'] }}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{ person_list[person]['department'] }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+
+
+{% if att_list['late'] %}
+<h3>Опоздавшие:</h3>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">Сотрудник</th>
+            <th class="mdl-data-table__cell--non-numeric">Отдел</th>
+            <th>Время прихода</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in att_list['late'] %}
+        <tr>
+            <td class="mdl-data-table__cell--non-numeric">{{ person_list[person]['id'] }}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{ person_list[person]['department'] }}</td>
+            <td>{{ attendance[person]['first in'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+
+{% if show_other %}
+<h3>Остальные:</h3>
+
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">Сотрудник</th>
+        <th class="mdl-data-table__cell--non-numeric">Отдел</th>
+        <th>Время прихода</th>
+        <th>Время ухода</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for key, value in att_list['other'].items() %}
+    {% for person in value %}
+    <tr>
+        <td class="mdl-data-table__cell--non-numeric">{{ person_list[person]['id'] }}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{ person_list[person]['department'] }}</td>
+        <td>{{ attendance[person]['first in'] }}</td>
+        <td>{{ attendance[person]['last out'] }}</td>
+    </tr>
+    {% endfor %}
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+
+{% endblock %}
