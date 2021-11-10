@@ -50,7 +50,7 @@
 
 
 {% if show_other %}
-<h3>Остальные:</h3>
+<h3>Вышедшие без опозданий:</h3>
 
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
     <thead>
@@ -68,7 +68,10 @@
         <td class="mdl-data-table__cell--non-numeric">{{ person_list[person]['id'] }}</td>
         <td class="mdl-data-table__cell--non-numeric">{{ person_list[person]['department'] }}</td>
         <td>{{ attendance[person]['first in'] }}</td>
-        <td>{{ attendance[person]['last out'] }}</td>
+        <td {% if attendance[person]['early leave'] %}style="color: red"{% endif %}>
+
+            {{ attendance[person]['last out'] }}
+        </td>
     </tr>
     {% endfor %}
     {% endfor %}
