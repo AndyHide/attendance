@@ -10,7 +10,7 @@ import requests
 
 
 def is_day_off(day):
-    if requests.get(f"http://isdayoff.ru/api/getdata?year={day.year}&month={day.month}&day={day.day}") == '1':
+    if requests.get(f"http://isdayoff.ru/api/getdata?year={day.year}&month={day.month}&day={day.day}").content == b'1':
         return True
     else:
         return False
