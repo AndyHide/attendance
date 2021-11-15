@@ -194,7 +194,7 @@ class Report:
         # опоздавшие
         for key, value in {k: v for k, v in sorted(self.person_list.items(), key=lambda item: item[1]['id'])
                            if v['include'] == 'y' and self.attendance[k]['late arrival']}.items():
-            att_list['late'].append(self.attendance[key]['message'])
+            att_list['late'].append(key)
 
         for department in self.departments['departments']:
             for key, value in {k: v for k, v in sorted(self.person_list.items(), key=lambda item: item[1]['id'])
