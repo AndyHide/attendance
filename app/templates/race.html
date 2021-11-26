@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Победители жестокой гонки {{ day }}</h2>
+
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+  <thead>
+  <tr>
+    <th class="mdl-data-table__cell--non-numeric">Сотрудник</th>
+    <th>Время ухода</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for person in winners %}
+  <tr>
+    <td class="mdl-data-table__cell--non-numeric">{{ person['name'] }}</td>
+    <td class="mdl-data-table__cell--non-numeric">{{ person['time'] }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
