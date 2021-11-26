@@ -69,6 +69,21 @@ def login():
     return render_template('login.html', title='Sign In', form=form)
 
 
+@app.route('/race')
+@login_required
+def race():
+    day = datetime.now() - timedelta(1)
+    if is_day_off(day):
+        while is_day_off(day):
+            day = day - timedelta(1)
+    day = datetime.strftime(day, '%Y-%m-%d')
+    report = Report('vars.json', 'et.json', 'persons.json', 'terminals.json', 'departments.json', day, 'yesterday')
+    report.connect()
+    report.getEvents()
+    winners = report.find_winners()
+    return render_template('race.html', title='Home', winners=winners, day=day)
+
+
 @app.route('/logout')
 def logout():
     logout_user()
