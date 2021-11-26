@@ -204,6 +204,17 @@ class Report:
                                   and not self.attendance[k]['late arrival']}.items():
                 att_list['other'][department].append(key)
         return att_list
+    
+    def find_winners(self):
+        self.winners = []
+        already_gone = []
+        for event in sorted(self.event_list, key=lambda d: d['time']):
+            # print(event['time'])
+            if event['deviceip'] in self.terminals['terminals_out'] and datetime.time(18, 0, 0) <= event['time'] <= datetime.time(18, 1, 0) and event['personid'] not in already_gone:
+                self.winners.append({'personid': event['personid'], 'time': event['time'], 'name': self.person_list[str(event['personid'])]['id']})
+                already_gone.append(event['personid'])
+
+        return self.winners[:5]
 
 
 if __name__ == "__main__":
